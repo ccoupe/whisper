@@ -1,0 +1,12 @@
+FROM  nvcr.io/nvidia/pytorch:22.07-py3
+#
+WORKDIR /app
+ENV TZ=America/Boise
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get -y update 
+RUN apt-get install -y tzdata
+RUN apt-get install -y ffmpeg
+RUN pip install -U git+https://github.com/openai/whisper.git 
+COPY requirements.txt requirements.txt
+RUN pip install flask
+
