@@ -34,7 +34,8 @@ def handler():
         # The file will get deleted when it drops out of scope.
         handle.save(temp)
         # Let's get the transcript of the temporary file.
-        result = model.transcribe(temp.name)
+        # Force english. 
+        result = model.transcribe(temp.name, language="en")
         # Now we can store the result object for this file.
         results.append({
             'filename': filename,
